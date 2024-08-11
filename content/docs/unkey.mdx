@@ -1,0 +1,22 @@
+---
+title: Pet Store API
+description: A simple API for managing pets
+full: true
+---
+
+<APIPage operations={[{"method":"get","path":"/pets"},{"method":"post","path":"/pets"}]} hasHead={true} />
+
+export function startup() {
+    if (toc) {
+        // toc might be immutable
+        while (toc.length > 0) toc.pop()
+        toc.push(...[])
+    }
+    
+    if (structuredData) {
+        structuredData.headings = []
+        structuredData.contents = []
+    }
+}
+
+{startup()}
