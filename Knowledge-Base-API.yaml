@@ -1,0 +1,222 @@
+openapi: 3.0.0
+info:
+  title: Knowledge Base API
+  version: "1.3"
+  description: >
+    API 用於 KM 進行聊天、搜尋、文檔摘要、部門問答、清理聊天紀錄
+  termsOfService: http://example.com/terms/
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: http://172.16.111.148:8088
+    description: AI03 測試機
+
+paths:
+  /chat:
+    post:
+      operationId: chatWithUser
+      summary: 聊天 API
+      description: KM 中與用戶閒聊的功能區使用
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: "10019565"
+                chat_id:
+                  type: string
+                  example: "1"
+                query:
+                  type: string
+                  example: "你好哇"
+      responses:
+        '200':
+          description: 聊天回應
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: string
+                    example: 嗨! 歡迎來到我們這裡 可以告訴我你目前遭遇了什麼困擾或是需要哪些幫忙嗎? 讓我來幫你找出最適合的解答吧~
+
+  /search:
+    post:
+      operationId: searchInfo
+      summary: 搜尋 API
+      description: 搜尋用戶查詢的相關信息
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: "10019565"
+                chat_id:
+                  type: string
+                  example: "1"
+                query:
+                  type: string
+                  example: >
+                    我的電腦是Windows Vista，不知道為甚麼在安裝完Intel Robson後，
+                    裝置管理員裡的Intel Turbo會出現黃色驚歎號
+      responses:
+        '200':
+          description: 搜尋結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        scores:
+                          type: number
+                          example: 6.454538839398381
+                        seqNo:
+                          type: integer
+                          example: 22
+                  output:
+                    type: string
+                    example: >
+                      您好，根據您的描述，這可能是由於您在安裝前並未啟用主機板 BIOS 中的 AHCI (Advanced Host Controller Interface) 模式所導致的。
+
+  /summary_QA:
+    post:
+      operationId: documentSummaryQA
+      summary: 摘要問答 API
+      description: 對文檔進行摘要並回答問題
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: "10019565"
+                chat_id:
+                  type: string
+                  example: "1"
+                files:
+                  type: array
+                  items:
+                    type: string
+                    example: "10016109@2024-0702-1147-016388@IP Ban安裝設定_v1.1.docx"
+                query:
+                  type: string
+                  example: "步驟3是甚麼?"
+      responses:
+        '200':
+          description: 問答結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: string
+                    example: 步驟三是指打開 Windows+R 以開啟執行窗格...
+
+  /dept_QA:
+    post:
+      operationId: departmentQA
+      summary: 部門問答 API
+      description: 根據部門資料庫進行問答
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: "10019565"
+                chat_id:
+                  type: string
+                  example: "1"
+                query:
+                  type: string
+                  example: "Super Speed Plus 的 USB Mask Fail 如何解決?"
+                dept_id:
+                  type: integer
+                  example: 19712
+      responses:
+        '200':
+          description: 部門問答結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        scores:
+                          type: number
+                          example: 4.362606402810867
+                        seqNo:
+                          type: integer
+                          example: 1445
+                        問題描述:
+                          type: string
+                          example: >
+                            問題所在分類1：Super Speed Plus (10Gbps)
+                            問題所在分類2：Mask Hits 狀況描述...
+                        解決方法:
+                          type: string
+                          example: 調整RK指令，調整之後指令無效...
+                  output:
+                    type: string
+                    example: 您好，關於您的問題，我們已經收集到了以下資料供您參考...
+
+  /clean:
+    post:
+      operationId: cleanChatRecords
+      summary: 清理聊天記錄 API
+      description: 清理指定聊天記錄
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chat_id:
+                  type: string
+                  example: "1"
+                section:
+                  type: string
+                  example: "chat"
+      responses:
+        '200':
+          description: 清理結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
