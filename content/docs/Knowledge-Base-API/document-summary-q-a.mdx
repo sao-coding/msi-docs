@@ -1,0 +1,24 @@
+---
+title: 摘要問答 API
+description: 對文檔進行摘要並回答問題
+full: true
+method: POST
+route: /summary_QA
+---
+
+<APIPage operations={[{"path":"/summary_QA","method":"post"}]} hasHead={false} />
+
+export function startup() {
+    if (toc) {
+        // toc might be immutable
+        while (toc.length > 0) toc.pop()
+        toc.push(...[])
+    }
+    
+    if (structuredData) {
+        structuredData.headings = []
+        structuredData.contents = [{"content":"對文檔進行摘要並回答問題"}]
+    }
+}
+
+{startup()}

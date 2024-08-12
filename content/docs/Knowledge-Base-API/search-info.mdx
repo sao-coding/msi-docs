@@ -1,10 +1,12 @@
 ---
-title: Pet Store API
-description: A simple API for managing pets
+title: 搜尋 API
+description: 搜尋用戶查詢的相關信息
 full: true
+method: POST
+route: /search
 ---
 
-<APIPage operations={[{"method":"get","path":"/pets"},{"method":"post","path":"/pets"}]} hasHead={true} />
+<APIPage operations={[{"path":"/search","method":"post"}]} hasHead={false} />
 
 export function startup() {
     if (toc) {
@@ -15,7 +17,7 @@ export function startup() {
     
     if (structuredData) {
         structuredData.headings = []
-        structuredData.contents = []
+        structuredData.contents = [{"content":"搜尋用戶查詢的相關信息"}]
     }
 }
 

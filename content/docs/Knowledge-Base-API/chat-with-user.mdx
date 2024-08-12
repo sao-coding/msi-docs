@@ -1,0 +1,24 @@
+---
+title: 聊天 API
+description: KM 中與用戶閒聊的功能區使用
+full: true
+method: POST
+route: /chat
+---
+
+<APIPage operations={[{"path":"/chat","method":"post"}]} hasHead={false} />
+
+export function startup() {
+    if (toc) {
+        // toc might be immutable
+        while (toc.length > 0) toc.pop()
+        toc.push(...[])
+    }
+    
+    if (structuredData) {
+        structuredData.headings = []
+        structuredData.contents = [{"content":"KM 中與用戶閒聊的功能區使用"}]
+    }
+}
+
+{startup()}

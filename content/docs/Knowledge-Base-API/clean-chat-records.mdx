@@ -1,0 +1,24 @@
+---
+title: 清理聊天記錄 API
+description: 清理指定聊天記錄
+full: true
+method: POST
+route: /clean
+---
+
+<APIPage operations={[{"path":"/clean","method":"post"}]} hasHead={false} />
+
+export function startup() {
+    if (toc) {
+        // toc might be immutable
+        while (toc.length > 0) toc.pop()
+        toc.push(...[])
+    }
+    
+    if (structuredData) {
+        structuredData.headings = []
+        structuredData.contents = [{"content":"清理指定聊天記錄"}]
+    }
+}
+
+{startup()}
