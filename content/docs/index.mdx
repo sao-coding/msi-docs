@@ -53,14 +53,17 @@ description: Ubuntu XRDP 遠端多人連線
 
 - 預設為 10 人，可修改人數上限
 
+<Callout type='error'>若超過 10 人連線，會出現以下視窗</Callout>
+![Image](../img/xrdp8.png)
+
 <Callout type='warn'>以下是並未開啟任何視窗的情況</Callout>
 
 - 5 人使用記憶體量 4GB/32GB
-  ![Image](../img/xrdp8.png)
-- 10 人使用的記憶體量 7GB/32GB
   ![Image](../img/xrdp9.png)
-- 15 人使用的記憶體量 13GB/32GB
+- 10 人使用的記憶體量 7GB/32GB
   ![Image](../img/xrdp10.png)
+- 15 人使用的記憶體量 13GB/32GB
+  ![Image](../img/xrdp11.png)
 
 ## 擴充 xrdp session
 
@@ -72,22 +75,22 @@ description: Ubuntu XRDP 遠端多人連線
 sudo vim /etc/xrdp/sesman.ini
 ```
 
-![Image](../img/xrdp11.png)
+![Image](../img/xrdp12.png)
 
 ### 2. 修改 MaxSessions 數量
 
 1. 輸入 `i` 進入編輯模式
 2. 將 `MaxSessions` 後面的數字（預設為 10）改成所需增加的 session 數量
 
-![Image](../img/xrdp12.png)
 ![Image](../img/xrdp13.png)
+![Image](../img/xrdp14.png)
 
 ### 3. 存檔並離開
 
 1. 點擊 `esc` 鍵進入指令模式
 2. 輸入 `:wq!` 並按 `Enter` 鍵存檔並離開
 
-![Image](../img/xrdp14.png)
+![Image](../img/xrdp15.png)
 
 ### 4. 重新啟動 xrdp
 
@@ -97,4 +100,4 @@ sudo vim /etc/xrdp/sesman.ini
 sudo service xrdp restart
 ```
 
-![Image](../img/xrdp15.png)
+![Image](../img/xrdp16.png)
