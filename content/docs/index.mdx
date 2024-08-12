@@ -1,13 +1,100 @@
 ---
-title: RDPX 多人連線
-description: RDPX 多人連線
+title: Ubuntu XRDP 遠端多人連線
+description: Ubuntu XRDP 遠端多人連線
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+以下是您文件的內容，轉換成 Markdown 格式：
 
-## What is Next?
+---
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+# XRDP 遠端連線
+
+## 目錄
+
+1. [安裝 XRDP 套件](#安裝-xrdp-套件)
+2. [常見問題](#常見問題)
+3. [使用](#使用)
+4. [預設同時連線人數](#預設同時連線人數)
+5. [擴充 xrdp session](#擴充-xrdp-session)
+
+## 安裝 XRDP 套件
+
+![Image](../img/xrdp1.png)
+
+1. 打開終端機
+2. 先取得最高權限
+3. 更新軟體的最新資訊及列表
+4. 更新目前已安裝的軟體到最新版本
+5. 安裝 XRDP 套件
+6. 啟動 XRDP 服務
+
+## 常見問題
+
+### 連線後無法使用 Firefox
+
+![Image](../img/xrdp2.png)
+
+解決方法：安裝 Chrome 瀏覽器。
+
+## 使用
+
+1. 搜尋遠端連線
+   ![Iamge](../img/xrdp3.png)
+2. 輸入 IP 位置
+   ![Image](../img/xrdp4.png)
+3. 選擇 “是”
+   ![Image](../img/xrdp5.png)
+4. 輸入 Linux 帳號密碼
+   ![Image](../img/xrdp6.png)
+5. 顯示使用者介面
+   ![Image](../img/xrdp7.png)
+
+## 預設同時連線人數
+
+- 預設為 10 人，可修改人數上限
+
+<Callout type='warn'>以下是並未開啟任何視窗的情況</Callout>
+
+- 5 人使用記憶體量 4GB/32GB
+  ![Image](../img/xrdp8.png)
+- 10 人使用的記憶體量 7GB/32GB
+  ![Image](../img/xrdp9.png)
+- 15 人使用的記憶體量 13GB/32GB
+  ![Image](../img/xrdp10.png)
+
+## 擴充 xrdp session
+
+### 1. 開啟 xrdp 設定檔
+
+在終端機中輸入下方指令：
+
+```bash
+sudo vim /etc/xrdp/sesman.ini
+```
+
+![Image](../img/xrdp11.png)
+
+### 2. 修改 MaxSessions 數量
+
+1. 輸入 `i` 進入編輯模式
+2. 將 `MaxSessions` 後面的數字（預設為 10）改成所需增加的 session 數量
+
+![Image](../img/xrdp12.png)
+![Image](../img/xrdp13.png)
+
+### 3. 存檔並離開
+
+1. 點擊 `esc` 鍵進入指令模式
+2. 輸入 `:wq!` 並按 `Enter` 鍵存檔並離開
+
+![Image](../img/xrdp14.png)
+
+### 4. 重新啟動 xrdp
+
+在終端機中輸入下方指令：
+
+```bash
+sudo service xrdp restart
+```
+
+![Image](../img/xrdp15.png)
