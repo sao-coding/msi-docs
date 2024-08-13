@@ -19,7 +19,7 @@ description: Ubuntu XRDP 遠端多人連線
 
 ## 安裝 XRDP 套件
 
-![Image](../img/xrdp1.png)
+![](../img/xrdp1.png)
 
 1. 打開終端機
 2. 先取得最高權限
@@ -32,7 +32,7 @@ description: Ubuntu XRDP 遠端多人連線
 
 ### 連線後無法使用 Firefox
 
-![Image](../img/xrdp2.png)
+![](../img/xrdp2.png)
 
 解決方法：安裝 Chrome 瀏覽器。
 
@@ -41,13 +41,13 @@ description: Ubuntu XRDP 遠端多人連線
 1. 搜尋遠端連線
    ![Iamge](../img/xrdp3.png)
 2. 輸入 IP 位置
-   ![Image](../img/xrdp4.png)
+   ![](../img/xrdp4.png)
 3. 選擇 “是”
-   ![Image](../img/xrdp5.png)
+   ![](../img/xrdp5.png)
 4. 輸入 Linux 帳號密碼
-   ![Image](../img/xrdp6.png)
+   ![](../img/xrdp6.png)
 5. 顯示使用者介面
-   ![Image](../img/xrdp7.png)
+   ![](../img/xrdp7.png)
 
 ## 預設同時連線人數
 
@@ -55,16 +55,16 @@ description: Ubuntu XRDP 遠端多人連線
 
 <Callout type='error'>若超過 10 人連線，會出現以下視窗</Callout>
 
-![Image](../img/xrdp8.png)
+![](../img/xrdp8.png)
 
 <Callout type='warn'>以下是並未開啟任何視窗的情況</Callout>
 
 - 5 人使用記憶體量 4GB/32GB
-  ![Image](../img/xrdp9.png)
+  ![](../img/xrdp9.png)
 - 10 人使用的記憶體量 7GB/32GB
-  ![Image](../img/xrdp10.png)
+  ![](../img/xrdp10.png)
 - 15 人使用的記憶體量 13GB/32GB
-  ![Image](../img/xrdp11.png)
+  ![](../img/xrdp11.png)
 - 表格
   | 使用人數 | 記憶體量 |
   | -------- | --------- |
@@ -82,22 +82,22 @@ description: Ubuntu XRDP 遠端多人連線
 sudo vim /etc/xrdp/sesman.ini
 ```
 
-![Image](../img/xrdp12.png)
+![](../img/xrdp12.png)
 
 ### 2. 修改 MaxSessions 數量
 
 1. 輸入 `i` 進入編輯模式
 2. 將 `MaxSessions` 後面的數字（預設為 10）改成所需增加的 session 數量
 
-![Image](../img/xrdp13.png)
-![Image](../img/xrdp14.png)
+![](../img/xrdp13.png)
+![](../img/xrdp14.png)
 
 ### 3. 存檔並離開
 
 1. 點擊 `esc` 鍵進入指令模式
 2. 輸入 `:wq!` 並按 `Enter` 鍵存檔並離開
 
-![Image](../img/xrdp15.png)
+![](../img/xrdp15.png)
 
 ### 4. 重新啟動 xrdp
 
@@ -107,4 +107,4 @@ sudo vim /etc/xrdp/sesman.ini
 sudo service xrdp restart
 ```
 
-![Image](../img/xrdp16.png)
+![](../img/xrdp16.png)
