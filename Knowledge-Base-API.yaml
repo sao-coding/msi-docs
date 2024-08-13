@@ -14,7 +14,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
 servers:
-  - url: http://172.16.111.148:8088
+  - url: http://0.0.0.0:8088
     description: AI03 測試機
 
 paths:
@@ -40,7 +40,7 @@ paths:
                   type: string
                   example: "你好哇"
       responses:
-        '200':
+        "200":
           description: 聊天回應
           content:
             application/json:
@@ -75,7 +75,7 @@ paths:
                     我的電腦是Windows Vista，不知道為甚麼在安裝完Intel Robson後，
                     裝置管理員裡的Intel Turbo會出現黃色驚歎號
       responses:
-        '200':
+        "200":
           description: 搜尋結果
           content:
             application/json:
@@ -125,7 +125,7 @@ paths:
                   type: string
                   example: "步驟3是甚麼?"
       responses:
-        '200':
+        "200":
           description: 問答結果
           content:
             application/json:
@@ -161,7 +161,7 @@ paths:
                   type: integer
                   example: 19712
       responses:
-        '200':
+        "200":
           description: 部門問答結果
           content:
             application/json:
@@ -210,7 +210,7 @@ paths:
                   type: string
                   example: "chat"
       responses:
-        '200':
+        "200":
           description: 清理結果
           content:
             application/json:
