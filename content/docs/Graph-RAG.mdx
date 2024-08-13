@@ -1,0 +1,38 @@
+---
+title: 微軟開源的RAG模型 Graph RAG
+description: Graph RAG
+---
+
+# 一. 什麼是 GraphRAG ?
+
+GraphRAG 的核心概念在於將 Knowledge Graph 中存儲的數據與 LLM 結合，通過查詢圖數據庫來增強模型的答案品質。
+
+Knowledge Graph 是一種結構化的知識表示方式，它由實體(Entities)和實體之間的關係(Relationships)組成，因此你可以在圖上看到實體之間的關聯性，如以下概念示意圖：
+
+<img
+  alt='Image'
+  src='https://miro.medium.com/v2/resize:fit:720/format:webp/0*AvPfmzJP5EWBvCx3.jpg'
+/>
+
+# 參考資料
+
+Github 項目來源：[GraphRAG](https://github.com/microsoft/graphrag)
+
+[▶【大模型RAG】Graph RAG 介绍及 ollama 本地部署](https://www.youtube.com/watch?v=tFLJUXsKGsc)
+[Knowledge Graph + RAG | Microsoft GraphRAG 實作與視覺化教學](https://medium.com/@cch.chichieh/knowledge-graph-rag-microsoft-graphrag-%E5%AF%A6%E4%BD%9C%E8%88%87%E8%A6%96%E8%A6%BA%E5%8C%96%E6%95%99%E5%AD%B8-ac07991855e6)
+
+🎮 相關代碼和資料：https://github.com/echonoshy/cgft-llm
+
+可能會遇到的問題：
+
+```
+⠸ GraphRAG Indexer
+├── Loading Input (InputFileType.text) - 1 files loaded (1 filtered) ━ 100% … 0…
+├── create_base_text_units
+├── create_base_extracted_entities
+├── create_summarized_entities
+└── create_base_entity_graph
+ Errors occurred during the pipeline run, see logs for more details.
+```
+
+你可能需要检查一下Ollama模型设置的上下文大小。如果你使用的是原始的Ollama模型（例如“ollama pull llama3”），可能会导致这个问题。因此，我建议按照视频中提到的方式，从Modelfile中注册一个模型，这样可以自定义更长的上下文大小。顺便提一下，如果你不使用和我一样的模型，不要忘记在embedding.py文件中更改模型名称。
