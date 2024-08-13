@@ -14,6 +14,14 @@ Knowledge Graph 是一種結構化的知識表示方式，它由實體(Entities)
   src='https://miro.medium.com/v2/resize:fit:720/format:webp/0*AvPfmzJP5EWBvCx3.jpg'
 />
 
+# 二. 為甚麼使用 GraphRAG?
+
+Knowledge Graph 最早可以追朔到 2012 年，Google 推出了他們第二代搜索引擎，並發表了一篇著名的博客文章「Introducing the Knowledge Graph: things, not strings」。他們發現，使用 KG 來組織網頁中的信息，可以實現能力的巨大飛躍。這一模式現在也在 GenAI 中逐漸發展，現在許多 GenAI 項目都因處理字符串而非事物的限制而遇到瓶頸。今天，前沿的 AI 工程師和學術研究人員也發現了谷歌曾發現的這一重要秘密：RAG 優化突破瓶頸的關鍵在於 KG，將具體事物的知識融入基於統計的文本技術中。
+
+根據 Microsoft GraphRAG 的相關研究 (Darren et al., 2024) 表示，GraphRAG 能大幅改進了傳統 RAG 的 Retrieval 部分，將更高相關性的內容填充到上下文窗口中，提供更好的答案並捕捉證據來源；他們還發現，GraphRAG 比其他方法所需的 tokens 減少了 26% 到 97%，使其更具擴展性。
+
+以下是 Microsoft Research Blog 的一個範例，你可以看到與普通的 RAG 相比，GraphRAG 的回答質量有顯著提升。
+
 # 參考資料
 
 Github 項目來源：[GraphRAG](https://github.com/microsoft/graphrag)
