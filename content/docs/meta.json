@@ -1,4 +1,4 @@
 {
   "title": "Name of Folder",
-  "pages": ["---伺服器---", "index", "Graph-RAG", "Knowledge-Base-API"]
+  "pages": ["---伺服器---", "mig", "...", "Knowledge-Base-API"]
 }

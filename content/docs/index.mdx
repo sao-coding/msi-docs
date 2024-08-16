@@ -1,106 +1,46 @@
 ---
-title: Ubuntu XRDP 遠端多人連線
-description: Ubuntu XRDP 遠端多人連線
+title: MIG 研究
+description: MIG 研究
 ---
 
-# XRDP 遠端連線
+有關MIG（多實例GPU）的詳細資料如下：
 
-## 目錄
+# 啟用MIG模式
 
-1. [安裝 XRDP 套件](#安裝-xrdp-套件)
-2. [常見問題](#常見問題)
-3. [使用](#使用)
-4. [預設同時連線人數](#預設同時連線人數)
-5. [擴充 xrdp session](#擴充-xrdp-session)
+- 使用`nvidia-smi`命令在指定的GPU上啟用MIG模式。例如，以下命令啟用MIG模式：
+  ```
+  $ nvidia-smi -i [gpu-ids] -mig 1
+  ```
+- 在啟用後，您可以通過查詢MIG模式來確認它是否已啟用 。
 
-## 安裝 XRDP 套件
+## GPU-ID
 
-![](../img/xrdp1.png)
+以逗號分隔的 GPU 索引、PCI 匯流排 ID 或 UUID 列表，指定要啟用 MIG 模式的 GPU。如果省略gpu-ids，則在系統上的所有 GPU 上啟用 MIG 模式。
 
-1. 打開終端機
-2. 先取得最高權限
-3. 更新軟體的最新資訊及列表
-4. 更新目前已安裝的軟體到最新版本
-5. 安裝 XRDP 套件
-6. 啟動 XRDP 服務
+- 此範例在 GPU 0 上啟用 MIG 模式。
+  ```sh
+  $ nvidia-smi -i 0 -mig 1
+  ```
 
-## 常見問題
+2. **在MIG啟用的GPU上創建GPU實例**
 
-### 連線後無法使用 Firefox
+   - 一旦啟用了MIG模式，您可以創建GPU實例。例如，以下命令列出可用的GPU實例配置：
+     ```
+     $ nvidia-smi mig -lgip
+     ```
+   - 然後使用對應的配置ID來創建GPU實例 。
 
-![](../img/xrdp2.png)
+3. **創建計算實例**
 
-解決方法：安裝 Chrome 瀏覽器。
+   - 在創建了GPU實例後，您可以選擇在這些實例中創建計算實例。使用以下命令來創建計算實例：
+     ```
+     $ nvidia-smi mig -cci compute-instance-profile-id -gi gpu-instance-id
+     ```
+   - 創建完成後，可以通過`nvidia-smi`命令來驗證這些實例 。
 
-## 使用
-
-1. 搜尋遠端連線
-   ![Iamge](../img/xrdp3.png)
-2. 輸入 IP 位置
-   ![](../img/xrdp4.png)
-3. 選擇 “是”
-   ![](../img/xrdp5.png)
-4. 輸入 Linux 帳號密碼
-   ![](../img/xrdp6.png)
-5. 顯示使用者介面
-   ![](../img/xrdp7.png)
-
-## 預設同時連線人數
-
-- 預設為 10 人，可修改人數上限
-
-<Callout type='error'>若超過 10 人連線，會出現以下視窗</Callout>
-
-![](../img/xrdp8.png)
-
-<Callout type='warn'>以下是並未開啟任何視窗的情況</Callout>
-
-- 5 人使用記憶體量 4GB/32GB
-  ![](../img/xrdp9.png)
-- 10 人使用的記憶體量 7GB/32GB
-  ![](../img/xrdp10.png)
-- 15 人使用的記憶體量 13GB/32GB
-  ![](../img/xrdp11.png)
-- 表格
-  | 使用人數 | 記憶體量 |
-  | -------- | --------- |
-  | 5 人 | 4GB/32GB |
-  | 10 人 | 7GB/32GB |
-  | 15 人 | 13GB/32GB |
-
-## 擴充 xrdp session
-
-### 1. 開啟 xrdp 設定檔
-
-在終端機中輸入下方指令：
-
-```bash
-sudo vim /etc/xrdp/sesman.ini
-```
-
-![](../img/xrdp12.png)
-
-### 2. 修改 MaxSessions 數量
-
-1. 輸入 `i` 進入編輯模式
-2. 將 `MaxSessions` 後面的數字（預設為 10）改成所需增加的 session 數量
-
-![](../img/xrdp13.png)
-![](../img/xrdp14.png)
-
-### 3. 存檔並離開
-
-1. 點擊 `esc` 鍵進入指令模式
-2. 輸入 `:wq!` 並按 `Enter` 鍵存檔並離開
-
-![](../img/xrdp15.png)
-
-### 4. 重新啟動 xrdp
-
-在終端機中輸入下方指令：
-
-```bash
-sudo service xrdp restart
-```
-
-![](../img/xrdp16.png)
+4. **禁用MIG模式**
+   - 如果您希望在某些GPU上禁用MIG模式，可以使用以下命令：
+     ```
+     $ nvidia-smi -i [gpu-ids] -mig 0
+     ```
+   - 確保在禁用前，該GPU未被其他進程使用 。
