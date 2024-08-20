@@ -23,7 +23,14 @@ description: MIG 研究報告
 
 ## 安裝步驟
 
-先省略
+安裝驅動程式
+```
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+# 以下指令會連同驅動一起安裝
+sudo apt-get -y install cuda
+```
 
 ## MIG 設定
 
@@ -195,6 +202,20 @@ sudo docker run -it --rm --gpus '"device=MIG-GPU-bc104fe1-14dd-ddc0-dae2-f13f995
 
 查詢可用的 MIG GPU
 ![alt text](../img/mig/image19.png)
+
+## 實際嘗試
+
+```
+sudo docker run -d   --name ollama   --gpus '"device=0:0"'   -p 11434:11434   -v $(pwd):/code   -v $(pwd)/api:/root/.ollama   --restart always   ollama/ollama:latest
+```
+
+![alt text](../img/mig/image21.png)
+
+- 使用 llama3.1 8b
+![alt text](../img/mig/image22.png)
+
+- 使用的記憶體量
+![alt text](../img/mig/image23.png)
 
 ## 參考資料
 
